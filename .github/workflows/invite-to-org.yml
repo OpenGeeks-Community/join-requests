@@ -1,0 +1,21 @@
+name: Invite to Organization
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  invite:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check if comment contains "join"
+        if: contains(github.event.comment.body, 'join')
+        run: |
+          echo "Comment contains 'join'. Proceeding with invitation."
+
+      - name: Send invite to user
+        uses: levibostian/invite-bot-action@v2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          org: OpenGeeks-Community
+          team_slug: default 
