@@ -8,14 +8,13 @@ jobs:
   invite:
     runs-on: ubuntu-latest
     steps:
-      - name: Check if comment contains "join"
+      - name: Check if comment contains 'join'
         if: contains(github.event.comment.body, 'join')
-        run: |
-          echo "Comment contains 'join'. Proceeding with invitation."
+        run: echo "Inviting user based on comment"
 
       - name: Send invite to user
         uses: levibostian/invite-bot-action@v2
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           org: OpenGeeks-Community
-          team_slug: default 
+          team_slug: default  # Optional: Replace with your default team slug if needed.
